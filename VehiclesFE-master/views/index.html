@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/50cfa764ed.js" crossorigin="anonymous"></script>
+  <title>Vehicles</title>
+</head>
+<body class="bg-dark text-white">
+    
+<div class="card border-0 w-50 mx-auto mt-4 bg-dark">
+  <div class="card-body">
+      <div class="card-text">
+        <form class="formCar">
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label class= "text-white" for="Plate">Plate</label>
+              <input class="form-control" id="plate">
+            </div>
+            <div class="form-group col-md-4">
+              <label class= "text-white" for="Brand">Brand</label>
+              <input class="form-control"  id="brand">
+            </div>
+            <div class="form-group col-md-4">
+              <label class= "text-white" for="Clor">Color</label>
+              <input class="form-control" id="clor">
+            </div>
+          </div>
+          <label id="carInfo"></label>
+          <button type= "button" id='button' class= "btn btn-success" onclick="createCar(document.getElementById('plate').value,document.getElementById('brand').value, document.getElementById('clor').value)">Create car</button>
+        </form>
+      </div>
+      <div class="card-text pt-4" id="wheelsForm">
+        <form class="formWheels" id="formWheel">
+          <div class="row">
+              <div class="form-group col-md-3">
+                <label class= "text-white" for="rueda1">Front-Left wheel</label>
+                <input class="form-control" id="rueda1" placeholder="Brand">
+              </div>
+              <div class="form-group col-md-3">
+                <label class= "text-white" for="diametro1">Front-Left wheel</label>
+                <input class="form-control"  id="diametro1" placeholder="Diameter">
+              </div>
+              <div class="form-group col-md-3">
+                <label class= "text-white" for="rueda2">Front-Right wheel </label>
+                <input class="form-control" id="rueda2" placeholder="Brand">
+              </div>
+              <div class="form-group col-md-3">
+                <label class= "text-white" for="diametro2">Front-Right wheel</label>
+                <input class="form-control"  id="diametro2" placeholder="Diameter">
+              </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label class= "text-white" for="rueda3">Back-Left wheel</label>
+              <input class="form-control" id="rueda3" placeholder="Brand">
+            </div>
+            <div class="form-group col-md-3">
+              <label class= "text-white" for="diametro3">Back-Left wheel</label>
+              <input class="form-control" id="diametro3" placeholder="Diameter">
+            </div>
+            <div class="form-group col-md-3">
+              <label class= "text-white" for="rueda4">Back-Right wheel</label>
+              <input class="form-control" id="rueda4" placeholder="Brand">
+            </div>
+            <div class="form-group col-md-3">
+              <label class= "text-white" for="diametro4">Back-Right wheel</label>
+              <input class="form-control"  id="diametro4" placeholder="Diameter">
+            </div>
+          </div>
+          <label id="carInfo"></label>
+          <button type= "button" id='button' class= "btn btn-success" onclick="createWheels(document.getElementById('plate').value,document.getElementById('brand').value, document.getElementById('clor').value)">Add Wheels</button>   
+        </form>
+        <div id="displayInfo" class="pt-4">
+          <div class="row">
+              <div class="col-md-4" id='showCar'></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4" id='showPlate'></div>
+            <div class="col-md-4" id='showBrand'></div>
+            <div class="col-md-4" id='showColor'></div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-md-4" id='showWheel'></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 pt-3" id='showW1'></div>
+            <div class="col-md-3 pt-3" id='showW2'></div>
+            <div class="col-md-3 pt-3" id='showW3'></div>
+            <div class="col-md-3 pt-3" id='showW4'></div>
+          </div>
+        </div>
+      </div>
+  </div>  
+</div>
+
+
+<script src="../models/car.js"></script>
+<script src="../models/wheel.js"></script>
+<script src="../controllers/controller.js"></script>  
+</body>
+</html>
