@@ -12,11 +12,11 @@
 <div class="card border-0 w-50 mx-auto mt-4 bg-dark">
   <div class="card-body">
       <div class="card-text">
-        <form class="formCar">
+        <form class="formCar" id="formCar">
           <div class="row">
             <div class="form-group col-md-4">
               <label class= "text-white" for="Plate">Plate</label>
-              <input class="form-control" id="plate">
+              <input class="form-control" id="plate" type="text">
             </div>
             <div class="form-group col-md-4">
               <label class= "text-white" for="Brand">Brand</label>
@@ -28,45 +28,45 @@
             </div>
           </div>
           <label id="carInfo"></label>
-          <button type= "button" id='button' class= "btn btn-success" onclick="createCar(document.getElementById('plate').value,document.getElementById('brand').value, document.getElementById('clor').value)">Create car</button>
+          <button type= "button" id='button' class= "btn btn-success" onclick="return createCar()">Create car</button>
         </form>
       </div>
       <div class="card-text pt-4" id="wheelsForm">
         <form class="formWheels" id="formWheel">
           <div class="row">
               <div class="form-group col-md-3">
-                <label class= "text-white" for="rueda1">Front-Left wheel</label>
-                <input class="form-control" id="rueda1" placeholder="Brand">
+                <label class= "text-white" for="rueda1">Brand Wheel 1</label>
+                <input class="form-control" id="rueda1">
               </div>
               <div class="form-group col-md-3">
-                <label class= "text-white" for="diametro1">Front-Left wheel</label>
-                <input class="form-control"  id="diametro1" placeholder="Diameter">
+                <label class= "text-white" for="diametro1">Diameter Wheel 1</label>
+                <input class="form-control"  id="diametro1">
               </div>
               <div class="form-group col-md-3">
-                <label class= "text-white" for="rueda2">Front-Right wheel </label>
-                <input class="form-control" id="rueda2" placeholder="Brand">
+                <label class= "text-white" for="rueda2">Brand Wheel 2</label>
+                <input class="form-control" id="rueda2">
               </div>
               <div class="form-group col-md-3">
-                <label class= "text-white" for="diametro2">Front-Right wheel</label>
-                <input class="form-control"  id="diametro2" placeholder="Diameter">
+                <label class= "text-white" for="diametro2">Diameter Wheel 2</label>
+                <input class="form-control"  id="diametro2">
               </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
-              <label class= "text-white" for="rueda3">Back-Left wheel</label>
-              <input class="form-control" id="rueda3" placeholder="Brand">
+              <label class= "text-white" for="rueda3">Brand Wheel 3</label>
+              <input class="form-control" id="rueda3">
             </div>
             <div class="form-group col-md-3">
-              <label class= "text-white" for="diametro3">Back-Left wheel</label>
-              <input class="form-control" id="diametro3" placeholder="Diameter">
+              <label class= "text-white" for="diametro3">Diameter Wheel 3</label>
+              <input class="form-control" id="diametro3">
             </div>
             <div class="form-group col-md-3">
-              <label class= "text-white" for="rueda4">Back-Right wheel</label>
-              <input class="form-control" id="rueda4" placeholder="Brand">
+              <label class= "text-white" for="rueda4">Brand Wheel 4</label>
+              <input class="form-control" id="rueda4">
             </div>
             <div class="form-group col-md-3">
-              <label class= "text-white" for="diametro4">Back-Right wheel</label>
-              <input class="form-control"  id="diametro4" placeholder="Diameter">
+              <label class= "text-white" for="diametro4">Diameter Wheel 4</label>
+              <input class="form-control"  id="diametro4">
             </div>
           </div>
           <label id="carInfo"></label>
