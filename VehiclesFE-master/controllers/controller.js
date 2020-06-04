@@ -2,6 +2,8 @@
 var car;
 var formWheel = document.getElementById("formWheel");
 formWheel.style.visibility = 'hidden';
+var formCar = document.getElementById("formCar");
+formCar.style.visibility = 'visible';
 function createCar() {
     var acumErrores = 0;
     var plateInput = document.getElementById("plate").value;
@@ -28,7 +30,8 @@ function createCar() {
         return false;
     }
     else {
-        var car_1 = new Car(plateInput, colorInput, brandInput);
+        car = new Car(plateInput, colorInput, brandInput);
+        formCar.style.visibility = 'hidden';
         formWheel.style.visibility = 'visible';
         var showCar = document.getElementById("showCar");
         showCar.innerHTML = "CAR: <br><br>";
@@ -40,97 +43,43 @@ function createCar() {
         showColor.innerHTML = " COLOR: " + colorInput;
     }
 }
-function createWheels(plate, brand, color) {
-    var car = new Car(plate, color, brand);
-    var rueda1 = document.getElementById("rueda1").value;
-    var rueda1Diam = parseFloat(document.getElementById("diametro1").value);
-    var rueda2 = document.getElementById("rueda2").value;
-    var rueda2Diam = parseFloat(document.getElementById("diametro2").value);
-    var rueda3 = document.getElementById("rueda3").value;
-    var rueda3Diam = parseFloat(document.getElementById("diametro3").value);
-    var rueda4 = document.getElementById("rueda4").value;
-    var rueda4Diam = parseFloat(document.getElementById("diametro4").value);
-    if (rueda1Diam <= 0.4 || rueda1Diam >= 2) {
-        alert('Check diameter wheel 1.');
+function createWheels() {
+    var acumErrores = 0;
+    for (var i = 1; i <= 4; i++) {
+        var ruedaBrand = document.getElementById('rueda' + i).value;
+        var ruedaDiam = parseFloat(document.getElementById('diametro' + i).value);
+        if (ruedaBrand == '') {
+            alert("Brand Wheel " + i + " is empty");
+            acumErrores++;
+        }
+        if (isNaN(ruedaDiam)) {
+            alert("Diameter Wheel " + i + " is empty");
+            acumErrores++;
+        }
+        else if (ruedaDiam <= 0.4 || ruedaDiam >= 2) {
+            alert("Check diameter of wheel " + i);
+            acumErrores++;
+        }
     }
-    else if (rueda2Diam <= 0.4 || rueda2Diam >= 2) {
-        alert('Check diameter wheel 2.');
-    }
-    else if (rueda3Diam <= 0.4 || rueda3Diam >= 2) {
-        alert('Check diameter wheel 3.');
-    }
-    else if (rueda4Diam <= 0.4 || rueda4Diam >= 2) {
-        alert('Check diameter wheel 4.');
+    if (acumErrores > 0) {
+        return false;
     }
     else {
+        for (var i = 1; i <= 4; i++) {
+            var ruedaBrand = document.getElementById('rueda' + i).value;
+            var ruedaDiam = parseFloat(document.getElementById('diametro' + i).value);
+            var wheel_generica = new Wheel(ruedaDiam, ruedaBrand);
+            car.addWheel(wheel_generica);
+        }
         var showWheels = document.getElementById("showWheel");
         showWheels.innerHTML = " WHEELS: " + '<br>';
-        car.addWheel(new Wheel(rueda1Diam, rueda1));
         var showW1 = document.getElementById("showW1");
         showW1.innerHTML = "Wheel 1 <br>Brand: " + car.wheels[0].brand + " <br>Diameter: " + car.wheels[0].diameter;
-        car.addWheel(new Wheel(rueda2Diam, rueda2));
         var showW2 = document.getElementById("showW2");
         showW2.innerHTML = "Wheel 2 <br>Brand: " + car.wheels[1].brand + " <br>Diameter: " + car.wheels[1].diameter;
-        car.addWheel(new Wheel(rueda3Diam, rueda3));
         var showW3 = document.getElementById("showW3");
         showW3.innerHTML = "Wheel 3 <br>Brand: " + car.wheels[2].brand + " <br>Diameter: " + car.wheels[2].diameter;
-        car.addWheel(new Wheel(rueda4Diam, rueda4));
         var showW4 = document.getElementById("showW4");
         showW4.innerHTML = "Wheel 4 <br>Brand: " + car.wheels[3].brand + " <br>Diameter: " + car.wheels[3].diameter;
     }
 }
-/*
-if (acumErrores > 0){
-        return false;
-    }else{
-        return true;
-    }
-*/
-/*
-
-function createWheels(plate:string,brand:string,color:string){
-    let car=new Car(plate,color,brand);
-
-    let rueda1 = (document.getElementById("rueda1") as HTMLInputElement).value;
-    let rueda1Diam = parseFloat((document.getElementById("diametro1") as HTMLInputElement).value);
-    let rueda2 = (document.getElementById("rueda2") as HTMLInputElement).value;
-    let rueda2Diam = parseFloat((document.getElementById("diametro2") as HTMLInputElement).value);
-    let rueda3 = (document.getElementById("rueda3") as HTMLInputElement).value;
-    let rueda3Diam = parseFloat((document.getElementById("diametro3") as HTMLInputElement).value);
-    let rueda4 = (document.getElementById("rueda4") as HTMLInputElement).value;
-    let rueda4Diam = parseFloat((document.getElementById("diametro4") as HTMLInputElement).value);
-
-    if(rueda1Diam <= 0.4 || rueda1Diam >= 2){
-        alert('Check Front-Left wheel diameter.');
-    }else if(rueda2Diam <= 0.4 || rueda2Diam >= 2){
-        alert('Check Front-Right wheel diameter.');
-    }else if(rueda3Diam <= 0.4 || rueda3Diam >= 2){
-        alert('Check Back-Left wheel diameter.');
-    }else if(rueda4Diam <= 0.4 || rueda4Diam >= 2){
-        alert('Check Back-Right wheel diameter.');
-    }else{
-        let showWheels = document.getElementById("showWheel") as HTMLParagraphElement;
-        showWheels.innerHTML= " WHEELS: " + '<br>';
-
-        car.addWheel(new Wheel(rueda1Diam,rueda1));
-            
-        let showW1 = document.getElementById("showW1") as HTMLParagraphElement;
-        showW1.innerHTML= `Wheel 1 <br>Brand: ${car.wheels[0].brand} <br>Diameter: ${car.wheels[0].diameter}`;
-
-        car.addWheel(new Wheel(rueda2Diam,rueda2));
-
-        let showW2 = document.getElementById("showW2") as HTMLParagraphElement;
-        showW2.innerHTML= `Wheel 2 <br>Brand: ${car.wheels[1].brand} <br>Diameter: ${car.wheels[1].diameter}`;
-
-        car.addWheel(new Wheel(rueda3Diam,rueda3));
-
-        let showW3 = document.getElementById("showW3") as HTMLParagraphElement;
-        showW3.innerHTML= `Wheel 3 <br>Brand: ${car.wheels[2].brand} <br>Diameter: ${car.wheels[2].diameter}`;
-
-        car.addWheel(new Wheel(rueda4Diam,rueda4));
-
-        let showW4 = document.getElementById("showW4") as HTMLParagraphElement;
-        showW4.innerHTML= `Wheel 4 <br>Brand: ${car.wheels[3].brand} <br>Diameter: ${car.wheels[3].diameter}`;
-    }
-}
-*/ 
