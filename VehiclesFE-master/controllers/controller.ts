@@ -1,11 +1,15 @@
 let car: Car;
+
 let formWheel = document.getElementById("formWheel") as HTMLInputElement;
 formWheel.style.visibility = 'hidden';
-
 let formCar = document.getElementById("formCar") as HTMLInputElement;
 formCar.style.visibility = 'visible';
+
+(document.getElementById("buttonCar") as HTMLInputElement).addEventListener('click', createCar);
+(document.getElementById("buttonWheels") as HTMLInputElement).addEventListener('click', createWheels);
+
 function createCar(){
-    let acumErrores = 0;
+    let acumErrores = 0; // Variable que sirve para la validación de los campos
 
     let plateInput = (document.getElementById("plate") as HTMLInputElement).value;
     let brandInput = (document.getElementById("brand") as HTMLInputElement).value;
@@ -33,9 +37,9 @@ function createCar(){
         acumErrores++;
     }
     
-    if (acumErrores > 0){
+    if (acumErrores > 0){ // si hay no se valida, por lo tanto devuelve false y la función deja de ejecutarse
         return false;
-    }else{
+    }else{ // si no hay errores en la validación anterior crearemos el coche y enseñaremos los datos introducidos en el formulario
         car=new Car(plateInput,colorInput,brandInput);
         formCar.style.visibility = 'hidden';
         formWheel.style.visibility = 'visible';
@@ -58,7 +62,8 @@ function createCar(){
 function createWheels(){
     let acumErrores = 0;
 
-    for (let i = 1; i <= 4; i++){
+    // Iteramos en el bucle los valores del formulario de ruedas para validar los campos de marca y diametro
+    for (let i = 1; i <= 4; i++){ 
         let ruedaBrand = (document.getElementById('rueda'+i) as HTMLInputElement).value;
         let ruedaDiam = parseFloat((document.getElementById('diametro'+i) as HTMLInputElement).value);
         if(ruedaBrand == ''){
@@ -78,7 +83,7 @@ function createWheels(){
     
     if (acumErrores > 0){
     return false;
-    }else{
+    }else{ // Una vez validados los campos, iteramos de nuevo el formulario para crear las 4 ruedas y las añadimos al coche
         for (let i = 1; i<= 4; i++){
             let ruedaBrand = (document.getElementById('rueda'+i) as HTMLInputElement).value;
             let ruedaDiam = parseFloat((document.getElementById('diametro'+i) as HTMLInputElement).value);
@@ -86,6 +91,7 @@ function createWheels(){
             car.addWheel(wheel_generica);
         }
 
+        // Una vez añadidas las ruedas, accedemos a nuestra clase coche y de ahí a ruedas para enseñar los datos
         let showWheels = document.getElementById("showWheel") as HTMLParagraphElement; 
         showWheels.innerHTML= " WHEELS: " + '<br>'; 
 
